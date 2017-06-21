@@ -1,6 +1,6 @@
-#ratpack with groovy script
+# ratpack with groovy script
 
-This script downloads the Groovy supported version of Ratpack using the @Grab command.  
+This one script runs Ratpack.  It downloads the Groovy version of Ratpack library using the @Grab command.  
 
 run the app: groovy app.groovy
 
