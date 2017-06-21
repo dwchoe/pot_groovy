@@ -10,5 +10,21 @@ ratpack {
     get {
       render "hello world"
     }
+
+    get("ping") {
+      render "ping"
+    }
+ 
+    get("name/:name") {
+      render "hello world, $pathTokens.name"
+    }
+   
+    path("status") {
+      byMethod {
+        get {
+          render "status"
+        }
+      }
+    }
   }
 }
