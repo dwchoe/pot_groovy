@@ -1,0 +1,77 @@
+group 'product-api'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '1.3.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+ext {
+    kafkaVersion = "0.9.0.0"
+    springVersion = "4.2.3"
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'groovy'
+
+war {
+    baseName = 'springboot'
+}
+
+//compileAspect {
+//    xlint = 'warning'
+//}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // provide /health, /beans, etc endpoints
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-logging")
+    compile 'org.codehaus.groovy:groovy-all:2.4.1'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf") //View resolver for Spring MVC
+    compile("org.springframework.boot:spring-boot-devtools")
+
+    compile("org.mongodb:mongo-java-driver:3.4.2")
+    compile("org.apache.kafka:kafka-clients:${kafkaVersion}")
+    compile("org.projectlombok:lombok:1.16.0")
+    compile("org.apache.httpcomponents:httpclient:4.3.4")
+    compile("net.sf.ehcache:ehcache:2.9.0")
+    compile("org.springframework.boot:spring-boot-starter-cache")
+
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile "org.codehaus.groovy:groovy:2.4.1"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+
+
+    // aspect
+    //compile "org.springframework:spring-aop:4.2.6"
+    //compile "org.aspectj:aspectjrt:1.8.9"
+    //aspectpath "org.aspectj:aspectjtools:1.8.9"
+}
+
+configurations {
+    runtime
+    compileJava
+    testCompileJava
+}
